@@ -1,50 +1,33 @@
-import 'bulma/css/bulma.css'
-import ProfileCard from "./ProfileCard";
-import AlexaImage from "./images/alexa.png";
-import CortanImage from "./images/cortana.png";
-import SiriImage from "./images/siri.png";
+import './App.css';
+import { useState } from "react";
+import AnimalShow from "./AnimalShow";
 
+function getRandomAnimal(){
+    const animals = ['bird', 'cat', 'cow', 'dog', 'gator', 'horse'];
 
+    return animals[Math.floor(Math.random() * animals.length)]
+}
 
 
 function App(){
-    return (
-        <div>
-            <section>
-                <div className='hero-body'>
-                    <p className='title'>Person Digital Assistants</p>
-                </div>
-            </section>
-                <div className='container'>
-                    <section className='section'>
-                        <div className='columns'>
-                            <div className='column is-3'>
-                                <ProfileCard 
-                                    title="Alexa" 
-                                    handle="@alexa99" 
-                                    image={AlexaImage}
-                                    description="Alexa was created by Amazon and helpes you buy things" />
-                            </div>
-                            <div className='column is-3'>
-                                <ProfileCard 
-                                    title="Cortana" 
-                                    handle="@cortana32" 
-                                    image={CortanImage}
-                                    description="Cortana was made by Microsoft. Who knows what it does?"/>
-                            </div>
-                            <div className='column is-3'>
-                                <ProfileCard 
-                                    title="Siri" 
-                                    handle="@siri01" 
-                                    image={SiriImage}
-                                    description="Siri was made by Apple and is being phased out"/>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
+    const [animals, setAnimals] = useState([]);
 
 
+    const handleClick = () => {
+        // ...animals meaning create a animals array == animals.push(getRandomAnimal())
+        setAnimals([...animals, getRandomAnimal()])
+    };
+
+    const renderedAnimals = animals.map((animal, index) =>{
+        return <AnimalShow type={animal} key={index} />
+    });
+
+    return(
+    <div className='app'>
+        <button onClick={handleClick}>Add Animal</button>
+        <div className='animal-list'>{renderedAnimals}</div>
+    </div>
     );
 }
-export default App;
+
+export default App; 
