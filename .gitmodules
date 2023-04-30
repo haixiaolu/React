@@ -1,0 +1,6 @@
+[submodule "app1"]
+	path = app1
+	url = https://github.com/haixiaolu/React.git
+[submodule "pics3"]
+	path = pics3
+	url = https://github.com/haixiaolu/React.git
